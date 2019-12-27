@@ -23,18 +23,34 @@ config.pwa = mergeWith(defaultConfig.pwa, config.pwa, (objValue, srcValue) => {
 /**
  * inject js and manifest
  */
-filter.register('theme_inject', (injects) => {
-  injects.head.raw('pwa-manifest', `<link rel="manifest" href="${config.pwa.manifest.path}" />`, {}, { cache: true, only: true });
-  injects.bodyEnd.raw('pwa-register', `
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
-    });
-  }
-  </script>
-  `, {}, { cache: true, only: true });
-});
+if (!config.pwa.disable_theme_inject) {
+  filter.register('theme_inject', (injects) => {
+    injects.head.raw('pwa-manifest', `<link rel="manifest" href="${config.pwa.manifest.path}" />`, {}, { cache: true, only: true });
+    injects.bodyEnd.raw('pwa-register', `
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
+      });
+    }
+    </script>
+    `, {}, { cache: true, only: true });
+  });
+}
+if (!config.pwa.disable_hexo_inject) {
+  filter.register('inject_ready', (inject) => {
+    inject.raw('head_end', `<link rel="manifest" href="${config.pwa.manifest.path}" />`)
+    inject.raw('body_end', `
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
+      });
+    }
+    </script>
+    `)
+  })
+}
 
 /**
  * generator manifest

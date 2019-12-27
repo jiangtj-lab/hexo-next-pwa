@@ -5,7 +5,16 @@
 
 ## Install
 
+If you use [next](https://github.com/theme-next/hexo-theme-next) or [cake](https://github.com/jiangtj/hexo-theme-cake) theme, just install it.
+
 ```bash
+yarn add @jiangtj/hexo-next-pwa
+```
+
+Others, you have to install [hexo-inject](https://github.com/hexojs/hexo-inject).
+
+```bash
+yarn add hexo-inject
 yarn add @jiangtj/hexo-next-pwa
 ```
 
