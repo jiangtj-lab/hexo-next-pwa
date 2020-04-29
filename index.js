@@ -3,17 +3,18 @@
 'use strict';
 
 const { config } = hexo;
-const { filter, generator } = hexo.extend;
+const { generator } = hexo.extend;
 const { generateSWString } = require('workbox-build');
 const { mergeWith } = require('lodash');
-const Util = require('next-util');
 const yaml = require('js-yaml');
-const utils = new Util(hexo, __dirname);
+const fs = require('fs');
+const { join } = require('path');
+const injector = require('hexo-extend-injector2')(hexo);
 
 /**
  * config
  */
-const defaultConfig = yaml.load(utils.getFileContent('default.yaml'));
+const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'));
 config.pwa = mergeWith(defaultConfig.pwa, config.pwa, (objValue, srcValue) => {
   if (Array.isArray(objValue)) {
     return srcValue;
@@ -23,34 +24,16 @@ config.pwa = mergeWith(defaultConfig.pwa, config.pwa, (objValue, srcValue) => {
 /**
  * inject js and manifest
  */
-if (!config.pwa.disable_theme_inject) {
-  filter.register('theme_inject', (injects) => {
-    injects.head.raw('pwa-manifest', `<link rel="manifest" href="${config.pwa.manifest.path}" />`, {}, { cache: true, only: true });
-    injects.bodyEnd.raw('pwa-register', `
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
-      });
-    }
-    </script>
-    `, {}, { cache: true, only: true });
+injector.register('head-end', `<link rel="manifest" href="${config.pwa.manifest.path}" />`);
+injector.register('body-end', `
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
   });
 }
-if (!config.pwa.disable_hexo_inject) {
-  filter.register('inject_ready', (inject) => {
-    inject.raw('head_end', `<link rel="manifest" href="${config.pwa.manifest.path}" />`)
-    inject.raw('body_end', `
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
-      });
-    }
-    </script>
-    `)
-  })
-}
+</script>
+`);
 
 /**
  * generator manifest
