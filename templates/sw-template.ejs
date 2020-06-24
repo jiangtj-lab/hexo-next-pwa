@@ -18,6 +18,6 @@ importScripts(
 );
 <% } %>
 
-<% if (runtimeCaching) { runtimeCaching.forEach(runtimeCachingString => {%>111<% });} %>
+<% if (runtimeCaching) { %><%- runtimeCaching.join('\n') %><% } %>
 
 <% if (disableDevLogs) { %>self.__WB_DISABLE_DEV_LOGS = true;<% } %>
