@@ -2,9 +2,7 @@
 
 'use strict';
 
-const { config } = hexo;
 const { generator } = hexo.extend;
-const { generateSWString } = require('workbox-build');
 const { mergeWith } = require('lodash');
 const yaml = require('js-yaml');
 const fs = require('fs');
@@ -15,7 +13,7 @@ const injector = require('hexo-extend-injector2')(hexo);
  * config
  */
 const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'));
-config.pwa = mergeWith(defaultConfig.pwa, config.pwa, (objValue, srcValue) => {
+const config = mergeWith(defaultConfig.pwa, hexo.config.pwa, (objValue, srcValue) => {
   if (Array.isArray(objValue)) {
     return srcValue;
   }
@@ -24,12 +22,12 @@ config.pwa = mergeWith(defaultConfig.pwa, config.pwa, (objValue, srcValue) => {
 /**
  * inject js and manifest
  */
-injector.register('head-end', `<link rel="manifest" href="${config.pwa.manifest.path}" />`);
+injector.register('head-end', `<link rel="manifest" href="${config.manifest.path}" />`);
 injector.register('body-end', `
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('${config.pwa.serviceWorker.path}');
+    navigator.serviceWorker.register('${config.serviceWorker.path}');
   });
 }
 </script>
@@ -39,7 +37,7 @@ if ('serviceWorker' in navigator) {
  * generator manifest
  */
 generator.register('pwa_manifest', () => {
-  let manifest = config.pwa.manifest;
+  const manifest = config.manifest;
   return {
     path: manifest.path,
     data: JSON.stringify(
@@ -54,15 +52,4 @@ generator.register('pwa_manifest', () => {
 /**
  * generator serviceWorker
  */
-generator.register('pwa_service_worker', () => {
-  let serviceWorker = config.pwa.serviceWorker;
-  return generateSWString(serviceWorker.options)
-    .then(result => {
-      return {
-        path: serviceWorker.path,
-        data: () => {
-          return result.swString;
-        }
-      };
-    });
-});
+generator.register('pwa_service_worker', () => require('./lib/generate-sw-string')(config.serviceWorker));
