@@ -22,6 +22,7 @@ pwa:
     path: /sw.js
     workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
     options:
+      swDest: sw.js
       importScripts: []
       runtimeCaching:
         - urlPattern: !!js/regexp /\//
