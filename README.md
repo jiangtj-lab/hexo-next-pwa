@@ -47,7 +47,7 @@ pwa:
       swDest: /sw.js
 ```
 
-Refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported for the time being. See the compatibility table below.
+`serviceWorker.options` refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported for the time being. See the compatibility table below.
 
 | feature | status |
 | :--- | :--- |
