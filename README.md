@@ -56,7 +56,7 @@ Refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/w
 | offlineGoogleAnalytics | ✔ |
 | runtimeCaching | ✔ |
 | globDirectory | ✖ |
-| additionalManifestEntries | plan |
+| additionalManifestEntries | ✖ |
 | babelPresetEnvTargets | ✖ |
 | cacheId | plan |
 | cleanupOutdatedCaches | ✖ |
