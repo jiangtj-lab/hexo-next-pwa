@@ -15,4 +15,69 @@ Others, you have to install hexo 5.0 or master.
 
 ## Configure
 
-See default config file: [default.yaml](default.yaml)
+```yml
+pwa:
+  # Generate manifest.json
+  manifest:
+    path: /manifest.json
+    # See https://developer.mozilla.org/zh-CN/docs/Web/Manifest
+    body:
+      # name: Blog
+      # short_name: dnocm
+      # lang: zh-CN
+      # display: standalone
+      # background_color: "#ecedee"
+      # theme_color: "#414852"
+      # icons:
+      #   - src: /images/favicon-32.png
+      #     sizes: 32x32
+      #     type: image/png
+      #   - src: /images/favicon-192.png
+      #     sizes: 192x192
+      #     type: image/png
+      #   - src: /images/favicon-512.png
+      #     sizes: 512x512
+      #     type: image/png
+  # Generate sw.js
+  serviceWorker:
+    workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
+    # See workbox-build's `generateSW()` API
+    # Here are some default configuration, see `./default.yaml`
+    options:
+      swDest: sw.js
+```
+
+Refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported for the time being. See the compatibility table below.
+
+| feature | status |
+| :--- | :--- |
+| swDest | ✔ |
+| importScripts | ✔ |
+| offlineGoogleAnalytics | ✔ |
+| runtimeCaching | ✔ |
+| globDirectory | ✖ |
+| additionalManifestEntries | plan |
+| babelPresetEnvTargets | ✖ |
+| cacheId | plan |
+| cleanupOutdatedCaches | ✖ |
+| clientsClaim | ✖ |
+| directoryIndex | ✖ |
+| dontCacheBustURLsMatching | ✖ |
+| globFollow | ✖ |
+| globIgnores | ✖ |
+| globPatterns | ✖ |
+| globStrict | ✖ |
+| ignoreURLParametersMatching | ✖ |
+| inlineWorkboxRuntime | ✖ |
+| manifestTransforms | ✖ |
+| maximumFileSizeToCacheInBytes | plan |
+| mode | ✖ |
+| modifyURLPrefix | ✖ |
+| navigateFallback | ✖ |
+| navigateFallbackDenylist | ✖ |
+| navigateFallbackAllowlist | ✖ |
+| navigationPreload | ✖ |
+| skipWaiting | plan |
+| sourcemap | ✖ |
+| templatedURLs | ✖ |
+

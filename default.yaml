@@ -2,8 +2,8 @@ pwa:
   manifest:
     path: /manifest.json
     body:
-      # name: Dnocm Blog
-      # short_name: dnocm
+      # name: Blog
+      # short_name: blog
       # lang: zh-CN
       # display: standalone
       # background_color: "#ecedee"
@@ -19,7 +19,6 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
-    path: /sw.js
     workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
     options:
       swDest: sw.js
