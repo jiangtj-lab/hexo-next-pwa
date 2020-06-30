@@ -19,8 +19,8 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
-    workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
-    disable_devLogs: false
+    cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
+    disableDevLogs: false
     options:
       swDest: /sw.js
       importScripts: []
