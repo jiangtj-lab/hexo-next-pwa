@@ -51,7 +51,7 @@ Refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/w
 
 | feature | status |
 | :--- | :--- |
-| swDest | ✔ |
+| swDest | ✔ relative to build directory |
 | importScripts | ✔ |
 | offlineGoogleAnalytics | ✔ |
 | runtimeCaching | ✔ |

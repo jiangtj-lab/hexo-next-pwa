@@ -12,8 +12,7 @@ describe('main', () => {
   const config = load(readFileSync(resolve(__dirname, '../default.yaml'), 'utf8')).pwa;
 
   const template = require('../lib/generate-sw-string')(config.serviceWorker);
-  const result = template.data();
-  console.log(result);
-  result
+  template.path.should.eql(config.serviceWorker.options.swDest);
+  template.data()
     .then(item => writeFileSync('./test/temp/sw.js', item));
 });
