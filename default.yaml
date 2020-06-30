@@ -51,4 +51,4 @@ pwa:
               statuses: [0, 200]
             expiration:
               maxAgeSeconds: 31536000 # 365 * 24 * 60 * 60
-      # offlineGoogleAnalytics: true
+      offlineGoogleAnalytics: false

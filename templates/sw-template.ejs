@@ -14,4 +14,6 @@ importScripts(
 
 <% if (runtimeCaching) { %><%- runtimeCaching.join('\n') %><% } %>
 
+<% if (offlineGoogleAnalytics) { %>workbox.googleAnalytics.initialize();<% } %>
+
 <% if (disableDevLogs) { %>self.__WB_DISABLE_DEV_LOGS = true;<% } %>

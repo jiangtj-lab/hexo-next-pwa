@@ -16,7 +16,8 @@ describe('main', () => {
   const options = Object.assign(config.serviceWorker.options, {
     mode: 'dev',
     sourcemap: false,
-    swDest: 'test/temp/sw-build.js'
+    swDest: 'test/temp/sw-build.js',
+    offlineGoogleAnalytics: true
   });
 
   generateSW(options)
