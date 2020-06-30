@@ -35,4 +35,16 @@ describe('main', () => {
     template.data()
       .then(item => writeFileSync('./test/temp/sw-analytics.js', item));
   });
+
+  it('generate-sw-string() with importScripts', () => {
+    const { serviceWorker } = defaultConfig();
+    Object.assign(serviceWorker.options, {
+      importScripts: [
+        'custom1', 'custom2', 'custom3'
+      ]
+    });
+    const template = require('../lib/generate-sw-string')(serviceWorker);
+    template.data()
+      .then(item => writeFileSync('./test/temp/sw-scripts.js', item));
+  });
 });

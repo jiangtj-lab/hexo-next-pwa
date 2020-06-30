@@ -40,7 +40,7 @@ pwa:
       #     type: image/png
   # Generate sw.js
   serviceWorker:
-    workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
+    cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
     # See workbox-build's `generateSW()` API
     # Here are some default configuration, see `./default.yaml`
     options:

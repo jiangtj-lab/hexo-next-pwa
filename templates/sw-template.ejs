@@ -8,7 +8,7 @@ importScripts('<%= workboxCDN %>');
 
 <% if (Array.isArray(importScripts) && importScripts.length > 0) { %>
 importScripts(
-  <%= importScripts.map(JSON.stringify).join(',\n  ') %>
+  <%- importScripts.map(JSON.stringify).join(',\n  ') %>
 );
 <% } %>
 
