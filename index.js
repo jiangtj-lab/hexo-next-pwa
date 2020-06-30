@@ -20,22 +20,9 @@ const config = mergeWith(defaultConfig.pwa, hexo.config.pwa, (objValue, srcValue
 });
 
 /**
- * inject js and manifest
- */
-injector.register('head-end', `<link rel="manifest" href="${config.manifest.path}" />`);
-injector.register('body-end', `
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('${config.serviceWorker.path}');
-  });
-}
-</script>
-`);
-
-/**
  * generator manifest
  */
+injector.register('head-end', `<link rel="manifest" href="${config.manifest.path}" />`);
 generator.register('pwa_manifest', () => {
   const manifest = config.manifest;
   return {
@@ -52,4 +39,13 @@ generator.register('pwa_manifest', () => {
 /**
  * generator serviceWorker
  */
+injector.register('body-end', `
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('${config.serviceWorker.options.swDest}');
+  });
+}
+</script>
+`);
 generator.register('pwa_service_worker', () => require('./lib/generate-sw-string')(config.serviceWorker));

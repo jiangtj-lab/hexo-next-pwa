@@ -22,10 +22,10 @@ pwa:
     workbox_cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
     disable_devLogs: false
     options:
-      swDest: sw.js
+      swDest: /sw.js
       importScripts: []
       runtimeCaching:
-        - urlPattern: !!js/regexp /\//
+        - urlPattern: /
           handler: NetworkFirst
           options:
             cacheName: index
