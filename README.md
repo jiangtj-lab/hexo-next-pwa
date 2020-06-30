@@ -44,7 +44,7 @@ pwa:
     # See workbox-build's `generateSW()` API
     # Here are some default configuration, see `./default.yaml`
     options:
-      swDest: sw.js
+      swDest: /sw.js
 ```
 
 Refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported for the time being. See the compatibility table below.
