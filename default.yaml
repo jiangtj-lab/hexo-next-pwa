@@ -2,8 +2,8 @@ pwa:
   manifest:
     path: /manifest.json
     body:
-      # name: Dnocm Blog
-      # short_name: dnocm
+      # name: Blog
+      # short_name: blog
       # lang: zh-CN
       # display: standalone
       # background_color: "#ecedee"
@@ -19,12 +19,13 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
-    path: /sw.js
+    cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
+    disableDevLogs: false
     options:
-      importScripts:
-        - https://cdn.jsdelivr.net/npm/workbox-sw@4.3.1/build/workbox-sw.min.js
+      swDest: /sw.js
+      importScripts: []
       runtimeCaching:
-        - urlPattern: !!js/regexp /\//
+        - urlPattern: /
           handler: NetworkFirst
           options:
             cacheName: index
@@ -51,4 +52,4 @@ pwa:
               statuses: [0, 200]
             expiration:
               maxAgeSeconds: 31536000 # 365 * 24 * 60 * 60
-      # offlineGoogleAnalytics: true
+      offlineGoogleAnalytics: false
