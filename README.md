@@ -11,7 +11,7 @@ If you use [next](https://github.com/theme-next/hexo-theme-next) or [cake](https
 yarn add @jiangtj/hexo-next-pwa
 ```
 
-Others, you have to install hexo 5.0 or master.
+Others, you need to install hexo5.0 or the latest master branch
 
 ## Configure
 
