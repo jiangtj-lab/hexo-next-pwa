@@ -39,7 +39,7 @@
     "eslint": "7.11.0",
     "eslint-config-hexo": "4.1.0",
     "hexo": "5.2.0",
-    "mocha": "8.0.1",
+    "mocha": "8.2.1",
     "workbox-build": "5.1.4"
   }
 }
