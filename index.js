@@ -9,15 +9,25 @@ const fs = require('fs');
 const { join } = require('path');
 const injector = require('hexo-extend-injector2')(hexo);
 
+const unsafe = require('js-yaml-js-types').all;
+const schema = yaml.DEFAULT_SCHEMA.extend(unsafe);
+
+
 /**
  * config
  */
-const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'));
+const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'), {schema});
 const config = mergeWith(defaultConfig.pwa, hexo.config.pwa, (objValue, srcValue) => {
   if (Array.isArray(objValue)) {
     return srcValue;
   }
 });
+
+
+const generateSWSchema = require('workbox-build/src/options/schema/generate-sw');
+const validate = require('workbox-build/src/lib/validate-options');
+config.serviceWorker.options.globDirectory = 'ignore';
+const options = validate(config.serviceWorker.options, generateSWSchema);
 
 /**
  * generator manifest
@@ -43,9 +53,18 @@ injector.register('body-end', `
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('${config.serviceWorker.options.swDest}');
+    navigator.serviceWorker.register('${options.swDest}');
   });
 }
 </script>
 `);
-generator.register('pwa_service_worker', () => require('./lib/generate-sw-string')(config.serviceWorker));
+
+generator.register('pwa_service_worker', locals => {
+  return require('./lib/generate-sw-string')(locals, options)
+    .then(({files}) => {
+      return files.map(file => ({
+        path: file.name,
+        data: file.contents
+      }));
+    });
+});
