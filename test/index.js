@@ -1,50 +1,15 @@
 'use strict';
 
 require('chai').should();
-const Hexo = require('hexo');
-// eslint-disable-next-line no-unused-vars
-const hexo = new Hexo(__dirname, { silent: true });
-const { load } = require('js-yaml');
-const { readFileSync, writeFileSync, mkdirSync } = require('fs');
-const { resolve } = require('path');
-
-const defaultYaml = readFileSync(resolve(__dirname, '../default.yaml'), 'utf8');
-const defaultConfig = () => {
-  return load(defaultYaml).pwa;
-};
-
-try {
-  mkdirSync('test/temp');
-} catch (ignore) {}
 
 describe('main', () => {
-  it('generate-sw-string() with default', () => {
-    const { serviceWorker } = defaultConfig();
-    const template = require('../lib/generate-sw-string')(serviceWorker);
-    template.path.should.eql(serviceWorker.options.swDest);
-    template.data()
-      .then(item => writeFileSync('./test/temp/sw-default.js', item));
-  });
-
-  it('generate-sw-string() with offlineGoogleAnalytics', () => {
-    const { serviceWorker } = defaultConfig();
-    Object.assign(serviceWorker.options, {
-      offlineGoogleAnalytics: true
-    });
-    const template = require('../lib/generate-sw-string')(serviceWorker);
-    template.data()
-      .then(item => writeFileSync('./test/temp/sw-analytics.js', item));
-  });
-
-  it('generate-sw-string() with importScripts', () => {
-    const { serviceWorker } = defaultConfig();
-    Object.assign(serviceWorker.options, {
-      importScripts: [
-        'custom1', 'custom2', 'custom3'
-      ]
-    });
-    const template = require('../lib/generate-sw-string')(serviceWorker);
-    template.data()
-      .then(item => writeFileSync('./test/temp/sw-scripts.js', item));
+  it('test js-yaml-js-types', () => {
+    const fs = require('fs');
+    const { join } = require('path');
+    const yaml = require('js-yaml');
+    const unsafe = require('js-yaml-js-types').all;
+    const schema = yaml.DEFAULT_SCHEMA.extend(unsafe);
+    const config = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'), {schema});
+    console.log(config.pwa.serviceWorker.options.runtimeCaching);
   });
 });

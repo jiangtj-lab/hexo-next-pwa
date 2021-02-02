@@ -1,0 +1,53 @@
+pwa:
+  manifest:
+    path: /manifest.json
+    body:
+      # name: Blog
+      # short_name: blog
+      # lang: zh-CN
+      # display: standalone
+      # background_color: "#ecedee"
+      # theme_color: "#414852"
+      # icons:
+      #   - src: /images/favicon-32.png
+      #     sizes: 32x32
+      #     type: image/png
+      #   - src: /images/favicon-192.png
+      #     sizes: 192x192
+      #     type: image/png
+      #   - src: /images/favicon-512.png
+      #     sizes: 512x512
+      #     type: image/png
+  serviceWorker:
+    options:
+      swDest: /sw.js
+      importScripts: []
+      runtimeCaching:
+        - urlPattern: /
+          handler: NetworkFirst
+          options:
+            cacheName: index
+        - urlPattern: !!js/regexp /\.(?:js|css)$/
+          handler: StaleWhileRevalidate
+          options:
+            cacheName: js-css
+        - urlPattern: regexp:\.(?:png|gif|jpg|jpeg|svg)$
+          handler: CacheFirst
+          options:
+            cacheName: images
+            expiration:
+              maxEntries: 60
+              maxAgeSeconds: 2592000 # 30 * 24 * 60 * 60
+        - urlPattern: regexp:^https:\/\/fonts\.googleapis\.com
+          handler: StaleWhileRevalidate
+          options:
+            cacheName: google-fonts-stylesheets
+        - urlPattern: regexp:^https:\/\/fonts\.gstatic\.com
+          handler: CacheFirst
+          options:
+            cacheName: google-fonts-webfonts
+            cacheableResponse:
+              statuses: [0, 200]
+            expiration:
+              maxAgeSeconds: 31536000 # 365 * 24 * 60 * 60
+      offlineGoogleAnalytics: false
