@@ -14,4 +14,19 @@ describe('main', () => {
     const config = yaml.load(readFileSync(join(__dirname, 'js-yaml-js-types.yaml'), 'utf8'), { schema });
     config.should.eql({ urlPattern: /\.(?:js|css)$/ });
   });
+
+  it('test default config', () => {
+    const config = require('../lib/get-default-config')(hexo);
+    const { runtimeCaching } = config.serviceWorker.options;
+    runtimeCaching[0].should.eql({
+      urlPattern: '/',
+      handler: 'NetworkFirst',
+      options: { cacheName: 'index' }
+    });
+    runtimeCaching[1].should.eql({
+      urlPattern: /\.(?:js|css)$/,
+      handler: 'StaleWhileRevalidate',
+      options: { cacheName: 'js-css' }
+    });
+  });
 });
