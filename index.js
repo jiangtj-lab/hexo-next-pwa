@@ -5,14 +5,15 @@
 const { generator } = hexo.extend;
 const { mergeWith } = require('lodash');
 const yaml = require('js-yaml');
-const fs = require('fs');
+const { readFileSync } = require('fs');
 const { join } = require('path');
 const injector = require('hexo-extend-injector2')(hexo);
+const schema = require('./lib/get-yaml-schema')(hexo);
 
 /**
  * config
  */
-const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'));
+const defaultConfig = yaml.load(readFileSync(join(__dirname, 'default.yaml'), 'utf8'), { schema });
 const config = mergeWith(defaultConfig.pwa, hexo.config.pwa, (objValue, srcValue) => {
   if (Array.isArray(objValue)) {
     return srcValue;
