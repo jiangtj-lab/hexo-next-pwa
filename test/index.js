@@ -29,4 +29,11 @@ describe('main', () => {
       options: { cacheName: 'js-css' }
     });
   });
+
+  it('validate default sw options', () => {
+    const config = require('../lib/get-default-config')(hexo);
+    const validate = require('../lib/validate-sw-options');
+    const options = validate(config.serviceWorker.options);
+    options.should.exist;
+  });
 });
