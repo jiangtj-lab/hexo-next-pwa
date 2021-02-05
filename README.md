@@ -70,3 +70,4 @@ pwa:
 | maximumFileSizeToCacheInBytes | ✖ |
 | modifyURLPrefix | ✖ |
 | templatedURLs | ✖ |
+| other options | ✔ |
