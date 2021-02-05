@@ -11,7 +11,6 @@
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-workbox-build": "mocha test/workbox-build.js",
     "p": "yarn --proxy=http://localhost:1080"
   },
   "repository": {
