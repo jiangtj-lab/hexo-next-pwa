@@ -9,7 +9,7 @@
 yarn add @jiangtj/hexo-next-pwa
 ```
 
-require: hexo5+ or [next](https://github.com/theme-next/hexo-theme-next)/[cake](https://github.com/jiangtj/hexo-theme-cake) theme
+**Require:** hexo5+ **or** [next](https://github.com/theme-next/hexo-theme-next)/[cake](https://github.com/jiangtj/hexo-theme-cake) theme
 
 ## Configure
 
