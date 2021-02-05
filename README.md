@@ -15,6 +15,8 @@ Others, you need to install hexo5.0 or the latest master branch
 
 ## Configure
 
+I added some default configurations, see [default.yaml](default.yaml)
+
 ```yml
 pwa:
   # Generate manifest.json
@@ -40,12 +42,20 @@ pwa:
       #     type: image/png
   # Generate sw.js
   serviceWorker:
-    cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
-    # See workbox-build's `generateSW()` API
-    # Here are some default configuration, see `./default.yaml`
+    precache:
+      # precache posts url
+      posts:
+        enable: true
+        sort: -date
+        limit: 10
+      # precache pages url
+      pages: true
     options:
+      # sw file path
       swDest: /sw.js
 ```
+
+`serviceWorker.precache` define how to precache url.
 
 `serviceWorker.options` refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported, due to the precache manifest is generated in different ways.
 
@@ -62,4 +72,3 @@ pwa:
 | maximumFileSizeToCacheInBytes | ✖ |
 | modifyURLPrefix | ✖ |
 | templatedURLs | ✖ |
-
