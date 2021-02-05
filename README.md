@@ -5,13 +5,11 @@
 
 ## Install
 
-If you use [next](https://github.com/theme-next/hexo-theme-next) or [cake](https://github.com/jiangtj/hexo-theme-cake) theme, just install it.
-
 ```bash
 yarn add @jiangtj/hexo-next-pwa
 ```
 
-Others, you need to install hexo5.0 or the latest master branch
+require: hexo5+ or [next](https://github.com/theme-next/hexo-theme-next)/[cake](https://github.com/jiangtj/hexo-theme-cake) theme
 
 ## Configure
 
