@@ -1,18 +1,17 @@
 {
   "name": "@jiangtj/hexo-next-pwa",
-  "version": "1.0.2",
+  "version": "2.0.1-beta6",
   "description": "",
   "main": "index.js",
   "files": [
     "index.js",
     "default.yaml",
-    "lib",
-    "templates"
+    "lib"
   ],
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-workbox-build": "mocha test/workbox-build.js"
+    "p": "yarn --proxy=http://localhost:1080"
   },
   "repository": {
     "type": "git",
@@ -29,17 +28,17 @@
   },
   "homepage": "https://github.com/jiangtj-lab/hexo-next-pwa#readme",
   "dependencies": {
-    "ejs": "^3.1.3",
     "hexo-extend-injector2": "^0.2.0",
-    "js-yaml": "^3.14.0",
-    "lodash": "^4.17.15"
+    "js-yaml": "^4.0.0",
+    "js-yaml-js-types": "^1.0.0",
+    "lodash": "^4.17.20",
+    "workbox-build": "^6.1.0"
   },
   "devDependencies": {
     "chai": "4.2.0",
-    "eslint": "7.11.0",
+    "eslint": "7.19.0",
     "eslint-config-hexo": "4.1.0",
-    "hexo": "5.2.0",
-    "mocha": "8.0.1",
-    "workbox-build": "5.1.4"
+    "hexo": "5.3.0",
+    "mocha": "8.2.1"
   }
 }

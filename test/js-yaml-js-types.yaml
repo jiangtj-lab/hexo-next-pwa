@@ -1,0 +1,1 @@
+urlPattern: !!js/regexp /\.(?:js|css)$/

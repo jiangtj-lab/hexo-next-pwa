@@ -19,32 +19,37 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
-    cdn: https://cdn.jsdelivr.net/npm/workbox-sw@5/build/workbox-sw.min.js
-    disableDevLogs: false
+    precache:
+      posts:
+        enable: true
+        sort: -date
+        limit: 10
+      pages: true
     options:
       swDest: /sw.js
-      importScripts: []
       runtimeCaching:
         - urlPattern: /
           handler: NetworkFirst
           options:
             cacheName: index
-        - urlPattern: !!js/regexp /\.(?:js|css)$/
+        - urlPattern: regexp:\.(?:js|css)$
           handler: StaleWhileRevalidate
           options:
             cacheName: js-css
-        - urlPattern: !!js/regexp /\.(?:png|gif|jpg|jpeg|svg)$/
+        - urlPattern: regexp:\.(?:png|gif|jpg|jpeg|svg)$
           handler: CacheFirst
           options:
             cacheName: images
+            cacheableResponse:
+              statuses: [0, 200]
             expiration:
               maxEntries: 60
               maxAgeSeconds: 2592000 # 30 * 24 * 60 * 60
-        - urlPattern: !!js/regexp /^https:\/\/fonts\.googleapis\.com/
+        - urlPattern: regexp:^https:\/\/fonts\.googleapis\.com
           handler: StaleWhileRevalidate
           options:
             cacheName: google-fonts-stylesheets
-        - urlPattern: !!js/regexp /^https:\/\/fonts\.gstatic\.com/
+        - urlPattern: regexp:^https:\/\/fonts\.gstatic\.com
           handler: CacheFirst
           options:
             cacheName: google-fonts-webfonts
@@ -52,4 +57,3 @@ pwa:
               statuses: [0, 200]
             expiration:
               maxAgeSeconds: 31536000 # 365 * 24 * 60 * 60
-      offlineGoogleAnalytics: false

@@ -3,34 +3,24 @@
 'use strict';
 
 const { generator } = hexo.extend;
-const { mergeWith } = require('lodash');
-const yaml = require('js-yaml');
-const fs = require('fs');
-const { join } = require('path');
 const injector = require('hexo-extend-injector2')(hexo);
+const config = require('./lib/get-default-config')(hexo);
+const validate = require('./lib/validate-sw-options');
 
-/**
- * config
- */
-const defaultConfig = yaml.load(fs.readFileSync(join(__dirname, 'default.yaml'), 'utf8'));
-const config = mergeWith(defaultConfig.pwa, hexo.config.pwa, (objValue, srcValue) => {
-  if (Array.isArray(objValue)) {
-    return srcValue;
-  }
-});
+const { manifest, serviceWorker } = config;
+serviceWorker.options = validate(serviceWorker.options);
 
 /**
  * generator manifest
  */
-injector.register('head-end', `<link rel="manifest" href="${config.manifest.path}" />`);
+injector.register('head-end', `<link rel="manifest" href="${manifest.path}" />`);
 generator.register('pwa_manifest', () => {
-  const manifest = config.manifest;
   return {
     path: manifest.path,
     data: JSON.stringify(
       Object.assign({
-        name: config.title,
-        start_url: config.url
+        name: hexo.config.title,
+        start_url: hexo.config.url
       }, manifest.body)
     )
   };
@@ -43,9 +33,18 @@ injector.register('body-end', `
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('${config.serviceWorker.options.swDest}');
+    navigator.serviceWorker.register('${serviceWorker.options.swDest}');
   });
 }
 </script>
 `);
-generator.register('pwa_service_worker', () => require('./lib/generate-sw-string')(config.serviceWorker));
+
+generator.register('pwa_service_worker', locals => {
+  return require('./lib/generate-sw-string')(locals, serviceWorker)
+    .then(({files}) => {
+      return files.map(file => ({
+        path: file.name,
+        data: file.contents
+      }));
+    });
+});
