@@ -71,3 +71,7 @@ pwa:
 | modifyURLPrefix | ✖ |
 | templatedURLs | ✖ |
 | other options | ✔ |
+
+## Difference from hexo-pwa
+
+Initially, hexo-next-pwa was a fork of hexo-pwa, so you can see that they have similar options, but due to several revisions, the current hexo-next-pwa has been very different from hexo-pwa
