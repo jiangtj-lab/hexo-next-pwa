@@ -72,6 +72,13 @@ pwa:
 | templatedURLs | ✖ |
 | other options | ✔ |
 
-## Difference from hexo-pwa
+## Explain
+
+### Difference from hexo-pwa
 
 Initially, hexo-next-pwa was a fork of hexo-pwa, so you can see that they have similar options, but due to several revisions, the current hexo-next-pwa has been very different from hexo-pwa
+
+### Why is it publish in the @jiangtj scope?
+
+In fact, I don’t know much about pwa. It (this plugin) relies on the internal api of workbox. I doubt whether I can maintain this plugin. Anyway, my blog depends on it. In the short term, I don’t Will give up :joy:
+
