@@ -47,37 +47,19 @@ pwa:
       swDest: /sw.js
 ```
 
-`serviceWorker.options` refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported for the time being. See the compatibility table below.
+`serviceWorker.options` refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported, due to the precache manifest is generated in different ways.
 
-| feature | status |
+| options | compatibility |
 | :--- | :--- |
-| swDest | ✔ relative to build directory |
-| importScripts | ✔ |
-| offlineGoogleAnalytics | ✔ |
-| runtimeCaching | ✔ |
+| swDest | relative to build directory |
 | globDirectory | ✖ |
-| additionalManifestEntries | ✖ |
-| babelPresetEnvTargets | ✖ |
-| cacheId | plan |
-| cleanupOutdatedCaches | ✖ |
-| clientsClaim | ✖ |
-| directoryIndex | ✖ |
 | dontCacheBustURLsMatching | ✖ |
 | globFollow | ✖ |
 | globIgnores | ✖ |
 | globPatterns | ✖ |
 | globStrict | ✖ |
-| ignoreURLParametersMatching | ✖ |
-| inlineWorkboxRuntime | ✖ |
 | manifestTransforms | ✖ |
-| maximumFileSizeToCacheInBytes | plan |
-| mode | ✖ |
+| maximumFileSizeToCacheInBytes | ✖ |
 | modifyURLPrefix | ✖ |
-| navigateFallback | ✖ |
-| navigateFallbackDenylist | ✖ |
-| navigateFallbackAllowlist | ✖ |
-| navigationPreload | ✖ |
-| skipWaiting | plan |
-| sourcemap | ✖ |
 | templatedURLs | ✖ |
 
