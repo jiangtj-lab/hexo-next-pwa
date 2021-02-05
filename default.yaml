@@ -40,6 +40,8 @@ pwa:
           handler: CacheFirst
           options:
             cacheName: images
+            cacheableResponse:
+              statuses: [0, 200]
             expiration:
               maxEntries: 60
               maxAgeSeconds: 2592000 # 30 * 24 * 60 * 60

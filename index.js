@@ -19,8 +19,8 @@ generator.register('pwa_manifest', () => {
     path: manifest.path,
     data: JSON.stringify(
       Object.assign({
-        name: config.title,
-        start_url: config.url
+        name: hexo.config.title,
+        start_url: hexo.config.url
       }, manifest.body)
     )
   };
