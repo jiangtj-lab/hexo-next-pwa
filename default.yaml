@@ -19,9 +19,14 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
+    precache:
+      posts:
+        enable: true
+        sort: -date
+        limit: 10
+      pages: true
     options:
       swDest: /sw.js
-      importScripts: []
       runtimeCaching:
         - urlPattern: /
           handler: NetworkFirst
