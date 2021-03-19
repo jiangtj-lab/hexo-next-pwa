@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/jiangtj-lab/hexo-next-pwa#readme",
   "dependencies": {
-    "hexo-extend-injector2": "^0.2.0",
+    "hexo-extend-injector2": "^0.3.0",
     "js-yaml": "^4.0.0",
     "js-yaml-js-types": "^1.0.0",
     "lodash": "^4.17.20",
