@@ -1,5 +1,6 @@
 pwa:
   manifest:
+    enable: true
     path: /manifest.json
     body:
       # name: Blog
@@ -19,14 +20,13 @@ pwa:
       #     sizes: 512x512
       #     type: image/png
   serviceWorker:
-    precache:
-      posts:
-        enable: true
-        sort: -date
-        limit: 10
-      pages: true
+    enable: true
+    addScript: true
+    wrapGenerate: true
+    sw: /sw.js
     options:
-      swDest: /sw.js
+      globPatterns:
+        - '**/*.{html,json,js,css}'
       runtimeCaching:
         - urlPattern: /
           handler: NetworkFirst
