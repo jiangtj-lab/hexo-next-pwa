@@ -9,7 +9,7 @@
 yarn add @jiangtj/hexo-next-pwa
 ```
 
-**Require:** hexo5+ **or** [next](https://github.com/theme-next/hexo-theme-next)/[cake](https://github.com/jiangtj/hexo-theme-cake) theme
+**Require:** hexo5+
 
 ## Configure
 
@@ -19,6 +19,7 @@ I added some default configurations, see [default.yaml](default.yaml)
 pwa:
   # Generate manifest.json
   manifest:
+    enable: true
     path: /manifest.json
     # See https://developer.mozilla.org/zh-CN/docs/Web/Manifest
     body:
@@ -40,37 +41,24 @@ pwa:
       #     type: image/png
   # Generate sw.js
   serviceWorker:
-    precache:
-      # precache posts url
-      posts:
-        enable: true
-        sort: -date
-        limit: 10
-      # precache pages url
-      pages: true
+    enable: true
+    sw: /sw.js
+    # add <script> if ('serviceWorker' in navigator) {...}</script> to your html file
+    addScript: true
+    # auto exec hexo workbox after generate, If you customize generate, please set it to false
+    wrapGenerate: true
     options:
-      # sw file path
-      swDest: /sw.js
+      # see [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW)
 ```
 
-`serviceWorker.precache` define how to precache url.
+## Console
 
-`serviceWorker.options` refer to [the workbox-build's `generateSW()` API](https://developers.google.cn/web/tools/workbox/reference-docs/latest/module-workbox-build#.generateSW). Some configurations are not supported, due to the precache manifest is generated in different ways.
+```bash
+hexo workbox [-g]
+```
+- `-g`: auto exec hexo generate before workbox build.
 
-| options | compatibility |
-| :--- | :--- |
-| swDest | relative to build directory |
-| globDirectory | ✖ |
-| dontCacheBustURLsMatching | ✖ |
-| globFollow | ✖ |
-| globIgnores | ✖ |
-| globPatterns | ✖ |
-| globStrict | ✖ |
-| manifestTransforms | ✖ |
-| maximumFileSizeToCacheInBytes | ✖ |
-| modifyURLPrefix | ✖ |
-| templatedURLs | ✖ |
-| other options | ✔ |
+This is very useful. If you disable the `wrapGenerate` option, it allows you to directly generate `sw.js`, but you need to be aware that you need to execute `hexo generate` before.
 
 ## Explain
 
