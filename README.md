@@ -9,7 +9,10 @@
 yarn add @jiangtj/hexo-next-pwa
 ```
 
-**Require:** hexo5+
+## Important
+
+- hexo version **require >= 5.0**
+- **not work** in `hexo s`, please exec `hexo g` and serve public dir by other tool (e.g. `serve public`)
 
 ## Configure
 
