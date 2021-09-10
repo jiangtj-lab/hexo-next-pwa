@@ -16,7 +16,7 @@ yarn add @jiangtj/hexo-next-pwa
 
 ## Configure
 
-I added some default configurations, see [default.yaml](default.yaml)
+I added some default configurations, see [default.yaml](default.yaml) or [my blog configuration](https://github.com/jiangtj/blog/blob/86640479ab1ea7386c1f53d0eb80362466e9f84f/_config.yml#L103-L125)
 
 ```yml
 pwa:
