@@ -71,5 +71,5 @@ Initially, hexo-next-pwa was a fork of hexo-pwa, so you can see that they have s
 
 ### Why is it publish in the @jiangtj scope?
 
-In fact, I don’t know much about pwa. It (this plugin) relies on the internal api of workbox. I doubt whether I can maintain this plugin. Anyway, my blog depends on it. In the short term, I don’t Will give up :joy:
+In fact, I don’t know much about pwa. I doubt whether I can maintain this plugin. Anyway, my blog depends on it. In the short term, I don’t Will give up :joy:.
 
