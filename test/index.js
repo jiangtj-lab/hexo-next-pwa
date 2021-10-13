@@ -29,4 +29,10 @@ describe('main', () => {
       options: { cacheName: 'js-css' }
     });
   });
+
+  it('test colorette', () => {
+    const { cyan, magenta } = require('colorette');
+    console.log('Generated: %s', magenta('C:\\Users'));
+    console.log('ServiceWorker files generated in %s', cyan('1s'));
+  });
 });
