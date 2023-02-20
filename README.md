@@ -63,6 +63,10 @@ hexo workbox [-g]
 
 This is very useful. If you disable the `wrapGenerate` option, it allows you to directly generate `sw.js`, but you need to be aware that you need to execute `hexo generate` before.
 
+## Known issues
+
+- https://github.com/jiangtj-lab/hexo-next-pwa/issues/57: In `hexo g -d`, pwa generate after deploy, please use `hexo g && hexo d` instead of `hexo g -d`
+
 ## Explain
 
 ### Difference from hexo-pwa
