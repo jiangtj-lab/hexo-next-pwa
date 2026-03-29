@@ -2,3 +2,5 @@ node_modules/
 *.log
 yarn.lock
 test/temp/
+package-lock.json
+pnpm-lock.yaml

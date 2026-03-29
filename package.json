@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "eslint": "eslint .",
-    "test": "mocha test/index.js",
-    "p": "yarn --proxy=http://localhost:1080"
+    "test": "mocha test/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,18 +27,17 @@
   },
   "homepage": "https://github.com/jiangtj-lab/hexo-next-pwa#readme",
   "dependencies": {
-    "colorette": "^2.0.19",
-    "js-yaml": "^4.0.0",
-    "js-yaml-js-types": "^1.0.1",
-    "lodash": "^4.17.20",
+    "colorette": "^2.0.20",
+    "js-yaml": "^4.1.1",
+    "lodash": "^4.17.23",
     "pretty-hrtime": "^1.0.3",
-    "workbox-build": "^6.5.4"
+    "workbox-build": "^7.4.0"
   },
   "devDependencies": {
-    "chai": "4.3.7",
-    "eslint": "8.34.0",
-    "eslint-config-hexo": "5.0.0",
-    "hexo": "6.3.0",
-    "mocha": "10.2.0"
+    "chai": "6.2.2",
+    "eslint": "10.1.0",
+    "eslint-config-hexo": "6.0.0",
+    "hexo": "8.1.1",
+    "mocha": "11.7.5"
   }
 }
